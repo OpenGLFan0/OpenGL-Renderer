@@ -2,7 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <math.h>
-//gcc -o main main.c glad.c -I./include -lglfw -lGL -lm -lXrandr -lXi -lX11 -lXxf86vm -lpthread -ldl -lXinerama -lXcursor -z noexecstack
+//glad -o main main.c glad.c -I./include -lglfw -lGL -lm -lXrandr -lXi -lX11 -lXxf86vm -lpthread -ldl -lXinerama -lXcursor -z noexecstack
 
 int main(int argc, char argv){
     glfwInit();
