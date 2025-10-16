@@ -4,7 +4,7 @@
 #include <math.h>
 //clang -o main main.c glad.c -I./include -lglfw -lGL -lm -lXrandr -lXi -lX11 -lXxf86vm -lpthread -ldl -lXinerama -lXcursor -z noexecstack
 
-int main(int argc, char argv){
+int main(){
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -27,17 +27,6 @@ int main(int argc, char argv){
     }
 
 
-    void framebuffer_size_callback(GLFWwindow* window, int width, int height){
-       glViewport(0, 0, width, height);
-    }
-
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
-    void processInput(GLFWwindow *window)
-    {
-        if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-            glfwSetWindowShouldClose(window, true);
-    }
 
 
     const char *vertexShaderSource = "#version 330 core\n"
@@ -91,7 +80,6 @@ int main(int argc, char argv){
     if(!success)
     {
         glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        printf("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n", infoLog);
     }
 
 
@@ -102,10 +90,6 @@ int main(int argc, char argv){
     glDeleteShader(fragmentShader);
 
     glUseProgram(shaderProgram);
-
-    int nrAttributes;
-    glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
-    printf("Maximum nr of vertex attributes supported: ", nrAttributes);
 
     while(!glfwWindowShouldClose(window))
     {
@@ -122,8 +106,6 @@ int main(int argc, char argv){
             0, 1, 3,   // first triangle
             1, 2, 3    // second triangle
         };
-
-        processInput(window);
 
         // rendering commands here
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
